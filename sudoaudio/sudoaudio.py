@@ -32,8 +32,10 @@ class Board(object):
         else:
             ret = self._check_row(x,value) and self._check_col(y, value) and self._check_square(x,y,value)
         if ret:
+            if self._rows[x][y] == 0:
+                self._remaining -= 1
             self._rows[x][y] = value
-            self._remaining -= 1
+
         return ret
 
     def _check_row(self, x, value):
