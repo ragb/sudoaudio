@@ -1,0 +1,38 @@
+Sudoaudio is a simple sudoku playing interface for blind people and others that need audio feedback for solving sudoku puzzles. It is not intended to be an advanced application nor provide interfaces to solve more puzzles or variations of sudoku, either then the standard 9x9 sudoku. Moreover it is meant for playing and forgetting, no complicated interfaces or procedures.
+
+Sudoaudio is in Early development stages. Pre-alpha for now. Expect bugs and kirks. You've been warned. The code is also a mess, and a not commented mess.
+
+== License ==
+
+This software is covered under the terms of the GNU General Public License version 3 or any later version of this license. Check the file COPYING for details.
+
+== how to use ==
+
+for now run in the root source dir
+
+python sudoaudio/sudoaudio.py <puzzlefile>
+
+The puzzle file should be in the following format:
+* 9 (nine) lines
+* each line with 9 numbers separated be white space
+* numbers can be from 0 to 9, where 0 means a blank square.
+
+== Requirements ==
+
+* Python 2.6 or above
+* pygame 1.5 or above
+* Speech-dispatcher (a recent version should work) and its python bindings
+
+Note that for now sudoaudio just works on Linux systems because I didn't't found or wrote a speech backend for Windows or anything else. Please help if you can.
+
+== Why Sudoaudio ==
+
+The main reason behind sudoaudio development is the lake of a sudoku audio interface for Linux systems, and a free software one, at least from its authors knowledge. OK, the truth is that the author wanted to play sudoku, and then thought this application could be useful to others. Further more there are not that many free software audiogames. Being free software everyone can contribute to the development and use the code and ideas for whatever they want to create, specially more free software audiogames.
+
+== Goals: ==
+
+* Make Sodoaudio run at least on Windows and Linux platforms (create binaries if possible)
+* Make a graphical user interface so that the audio is accompanied with the sudoku board on the screen.
+* Provide more puzzles and an easy way to load them
+* Have good and funny sounds when playing
+
