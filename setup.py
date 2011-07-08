@@ -6,7 +6,7 @@ setup(
     packages=['sudoaudio'],
     license='GPL v3',
     install_requires = ['pygame'],
-    long_description=open('README').read().
+    long_description=open('README').read(),
     
     author = "Rui Batista",
     author_email = "ruiandrebatista@gmail.com"
