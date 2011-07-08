@@ -61,6 +61,7 @@ class Board(object):
     def is_solution(self):
         return self._remaining == 0
 
+    @property
     def blanks(self):
         return self._remaining
 
@@ -123,6 +124,13 @@ class Game(object):
         else:
             speech.speak(_("Impossible move"))
 
+    def position(self, event):
+        # report this from 1 to 9, people count from one...
+        speech.speak("Row %d, column %d" % (self._x + 1, self._y + 1))
+
+    def blanks(self, event):
+        speech.speak("%d blanks" % self._board.blanks)
+
     def speak_current(self):
         val = self._board.get(self._x, self._y)
         speech.speak(str(val), stop=True)
@@ -144,6 +152,8 @@ class Game(object):
     K_UP : move,
     K_LEFT : move,
     K_RIGHT : move,
+    K_p : position,
+    K_b : blanks,
     K_q : quit,
     K_ESCAPE : quit
     }
