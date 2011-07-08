@@ -135,7 +135,8 @@ class Game(object):
 
     def speak_current(self):
         val = self._board.get(self._x, self._y)
-        speech.speak(str(val), stop=True)
+        message = str(val) if val > 0 else _("Blank")
+        speech.speak(message)
 
     def run(self):
         speech.speak(_("Starting game"))
