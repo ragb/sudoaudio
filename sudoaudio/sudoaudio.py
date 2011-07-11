@@ -14,15 +14,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import itertools
+import logging
+import optparse
+import time
+
 import pygame
 from pygame.locals import *
 pygame.mixer.init()
-import time
 
 from gettext import gettext as _
 
 import speech
 
+logger = logging.getLogger(__name__)
 
 
 class Board(object):
@@ -168,6 +172,13 @@ class Game(object):
     }
     for i in range(K_0, K_9 + 1):
         _key_handlers[i] = put
+
+
+def _set_logging(opts):
+    level = os.environ['SUDOAUDIO_LOGLEVEL']
+    level = getattr(logging, level, None)
+    if level:
+        logging.basicConfig(level=level)
 
 def main(args):
     speech.init()

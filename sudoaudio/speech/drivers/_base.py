@@ -1,5 +1,10 @@
+
 import glob
+import logging
 import os.path
+
+
+logger = logging.getLogger(__name__)
 
 class DriverNotSupportedException(Exception):
     """ Informs that a driver is not supported
@@ -20,21 +25,27 @@ _registry = None
 
 def _load_registry():
     global _registry
+    logger.info("loading speech drivers")
     _registry = []
     basepath = os.path.abspath(os.path.dirname(__file__))
     files = glob.glob(os.path.join(basepath, "*driver.py"))
     modules = [os.path.basename(f)[:-3] for f in files] # strip ".py"
     for module in modules:
         try:
+            logger.info("Trying to import module %s", module)
             m = __import__(module, globals=globals())
         except DriverNotSupportedException:
+            logger.info("Module can not be imported")
             continue
         try:
             d = m.Driver
             _registry.append(d)
         except AttributeError:
-            pass
-
+            logger.error("module %s does not contain a driver class", m.__name__)
+        if not _registry:
+            logger.critical("No drivers loaded")
+            return False
+        return True
 
 def list_drivers():
     if _registry is None:
