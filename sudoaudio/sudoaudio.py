@@ -13,6 +13,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import itertools
 import pygame
 from pygame.locals import *
 pygame.mixer.init()
@@ -29,7 +30,7 @@ class Board(object):
     def __init__(self, rows):
         self._original = [list(r) for r in rows]
         self._rows = [list(r) for r in rows]
-        self._remaining = sum([1 for i in range(9) for j in range(9) if self._rows[i][j] == 0])
+        self._remaining = sum([1 for i, j in itertools.product(range(9), repeat=2) if self._rows[i][j] == 0])
 
     def get(self, x, y):
         return self._rows[x][y]
@@ -50,30 +51,20 @@ class Board(object):
             if self._rows[x][y] == 0:
                 self._remaining -= 1
             self._rows[x][y] = value
-
         return ret
 
     def _check_row(self, x, value):
-        for i in range(9):
-            if self._rows[x][i] == value:
-                return False
-        return True
+        return not any([self._rows[x][i] == value for i in range(9)])
 
     def _check_col(self, y, value):
-        for i in range(9):
-            if self._rows[i][y] == value:
-                return False
-        return True
+        return not any([self._rows[j][y] == value for j in range(9)])
 
     def _check_square(self, x, y, value):
         basex = x - (x % 3)
         basey = y - (y % 3)
-        # make this pythonic
-        for i in range(basex, basex + 3):
-            for j in range(basey, basey + 3):
-                if self._rows[i][j] == value:
-                    return False
-        return True
+        indexes = [(x, y) for x, y in itertools.product(range(basex, 3), range(basey, 3))]
+        return not any([self._rows[i][j] == value for i, j in indexes])
+
 
     def is_solution(self):
         return self._remaining == 0
@@ -179,6 +170,7 @@ class Game(object):
         _key_handlers[i] = put
 
 def main(args):
+    speech.init()
     pygame.init()
     pygame.display.set_mode((640, 480))
     pygame.display.set_caption("sudoaudio")
