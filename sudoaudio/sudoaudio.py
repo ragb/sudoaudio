@@ -15,7 +15,9 @@
 
 import itertools
 import logging
+import os.path
 import optparse
+import sys
 import time
 
 import pygame
@@ -25,6 +27,7 @@ pygame.mixer.init()
 from gettext import gettext as _
 
 import speech
+from menu import ChoiceMenu
 
 logger = logging.getLogger(__name__)
 
@@ -173,6 +176,9 @@ class Game(object):
     for i in range(K_0, K_9 + 1):
         _key_handlers[i] = put
 
+def list_puzzles(path):
+    import glob
+    return sorted([f for f in os.listdir(path) if f.endswith(".sudo")])
 
 def _set_logging(opts):
     level = os.environ['SUDOAUDIO_LOGLEVEL']
@@ -186,12 +192,19 @@ def main(args):
     pygame.display.set_mode((640, 480))
     pygame.display.set_caption("sudoaudio")
     try:
-        Game(args[0]).run()
+        if len(args) < 1:
+            dir = os.path.join(os.path.dirname(__file__), "..", "puzzles", "pack1")
+            basename = ChoiceMenu(_("Select puzzle"), list_puzzles(dir)).run()
+            file = os.path.join(dir, basename)
+            if basename is None:
+                sys.exit(-1)
+        else:
+            file = args[0]
+        Game(file).run()
     except:
         raise
     finally:
         pygame.quit()
 
 if __name__ == '__main__':
-    import sys
     main(sys.argv[1:])
