@@ -20,14 +20,14 @@ The puzzle file should be in the following format:
 * 9 (nine) lines
 * each line with 9 numbers separated be white space
 * numbers can be from 0 to 9, where 0 means a blank square.
+* In the puzzles folder there are a bunch of instances.
 
 == Requirements ==
 
 * Python 2.6 or above
-* pygame 1.5 or above
+* pygame 1.9 or above
 * Speech-dispatcher (a recent version should work) and its python bindings
-
-Note that for now sudoaudio just works on Linux systems because I didn't't found or wrote a speech backend for Windows or anything else. Please help if you can.
+* SAPI5 on windows (not well tested).
 
 == Why Sudoaudio ==
 
