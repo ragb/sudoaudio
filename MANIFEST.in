@@ -1,4 +1,4 @@
 include AUTHORS
 include COPYING
 include README
-include puzzles/**/*.sudo
+recursive-include puzzles/*
