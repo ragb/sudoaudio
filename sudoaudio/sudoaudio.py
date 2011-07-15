@@ -24,13 +24,19 @@ import pygame
 from pygame.locals import *
 pygame.mixer.init()
 
-from gettext import gettext as _
-
 import speech
 import paths
 from menu import ChoiceMenu, SoundSplash
 
+import gettext
+gettext.bindtextdomain("sudoaudio", paths.localedir)
+gettext.textdomain("sudoaudio")
+
+from gettext import gettext as _
+
 logger = logging.getLogger(__name__)
+
+
 
 
 class Board(object):

@@ -43,7 +43,6 @@ class SoundSplash(object):
             for event in pygame.event.get():
                 if event.type == sounds.end_sound_event:
                     running = False
-                    print "finished"
                 elif event.type == pygame.KEYDOWN and allow_skeepping:
                     running = False
 

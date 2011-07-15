@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-07-15 14:32+WEST\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: ./sudoaudio/sudoaudio.py:112
+msgid "quitting"
+msgstr "Saindo"
+
+#: ./sudoaudio/sudoaudio.py:139
+msgid "Solution found"
+msgstr "Solução Encontrada"
+
+#: ./sudoaudio/sudoaudio.py:141
+msgid "Impossible move"
+msgstr "Jogada impossível"
+
+#: ./sudoaudio/sudoaudio.py:152
+msgid "Blank"
+msgstr "Branco"
+
+#: ./sudoaudio/sudoaudio.py:156
+msgid "Starting game"
+msgstr "Iniciando o jogo"
+
+#: ./sudoaudio/sudoaudio.py:200
+msgid "Select puzzle"
+msgstr "Escolha o Puzzle"
+
