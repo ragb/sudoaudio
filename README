@@ -1,6 +1,6 @@
 Sudoaudio is a simple sudoku playing interface for blind people and others that need audio feedback for solving sudoku puzzles. It is not intended to be an advanced application nor provide interfaces to solve more puzzles or variations of sudoku, either then the standard 9x9 sudoku. Moreover it is meant for playing and forgetting, no complicated interfaces or procedures.
 
-Sudoaudio is in Early development stages. Pre-alpha for now. Expect bugs and kirks. You've been warned. The code is also a mess, and a not commented mess.
+Sudoaudio is in Early development stages. Pre-alpha for now. Expect bugs and kirks. You've been warned. The code is also a mess, and a not commented mess. However do not exitate to contact the AUTHOR with bugs and sugestions.
 
 == Author and Contacts ==
 
@@ -14,24 +14,30 @@ This software is covered under the terms of the GNU General Public License versi
 
 for now run in the root source dir
 
+python sudoaudio/sudoaudio.py
+
+or
+
 python sudoaudio/sudoaudio.py <puzzlefile>
 
 The puzzle file should be in the following format:
 * 9 (nine) lines
 * each line with 9 numbers separated be white space
 * numbers can be from 0 to 9, where 0 means a blank square.
-* In the puzzles folder there are a bunch of instances.
+* In the puzzles folder there are a bunch of example instances.
 
 == Requirements ==
 
-* Python 2.6 or above
-* pygame 1.9 or above
-* Speech-dispatcher (a recent version should work) and its python bindings
-* SAPI5 on windows (not well tested).
+* Python 2.6 or greater
+* pygame 1.9 or greate
+* Speech-dispatcher (a recent version should work) and its python bindings, to run under linux
+* SAPI5 on windows (not well tested) and the comtypes python library.
 
 == Why Sudoaudio ==
 
 The main reason behind sudoaudio development is the lake of a sudoku audio interface for Linux systems, and a free software one, at least from its authors knowledge. OK, the truth is that the author wanted to play sudoku, and then thought this application could be useful to others. Further more there are not that many free software audiogames. Being free software everyone can contribute to the development and use the code and ideas for whatever they want to create, specially more free software audiogames.
+
+On the other hand the code developed in this project can be used on other projects, in the future can become a library on itself for audiogames development.
 
 == Goals: ==
 
