@@ -43,8 +43,10 @@ class Driver(_base.BaseDriver):
         logger.debug("Cancelling speech")
         self._client.cancel()
 
+    def close(self):
+        self._client.close()
+
     def __del__(self):
-        try:
+        if self._client:
             self._client.close()
-        except:
-            pass
+            self._client = None

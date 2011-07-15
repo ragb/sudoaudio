@@ -32,4 +32,6 @@ def speak(message, cancel=True):
 def cancel():
     _driver.cancel()
 
-
+def quit():
+    if _driver:
+        _driver.close()

@@ -188,10 +188,10 @@ def _set_logging(opts):
 
 def main(args):
     speech.init()
-    pygame.init()
-    pygame.display.set_mode((640, 480))
-    pygame.display.set_caption("sudoaudio")
     try:
+        pygame.init()
+        pygame.display.set_mode((640, 480))
+        pygame.display.set_caption("sudoaudio")
         if len(args) < 1:
             dir = os.path.join(os.path.dirname(__file__), "..", "puzzles", "pack1")
             basename = ChoiceMenu(_("Select puzzle"), list_puzzles(dir)).run()
@@ -205,6 +205,8 @@ def main(args):
         raise
     finally:
         pygame.quit()
+        speech.quit()
+
 
 if __name__ == '__main__':
     main(sys.argv[1:])

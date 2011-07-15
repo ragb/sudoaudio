@@ -58,3 +58,4 @@ class Driver(_base.BaseDriver):
 
 	def cancel(self):
 		self.tts.Speak(None, 1|constants.SVSFPurgeBeforeSpeak)
+

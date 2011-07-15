@@ -27,13 +27,14 @@ class DriverNotSupportedException(Exception):
     Reasons may include libraries not installed or driver doesn't support current platform
     """
 
-
 class BaseDriver(object):
     def speak(self, message):
         RaiseNotImplementedError
     def cancel(self):
         RaiseNotImplementedError
 
+    def close(self):
+        raise NotImplementedError
 
 
 _registry = None
