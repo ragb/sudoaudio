@@ -198,9 +198,9 @@ def main(args):
         if len(args) < 1:
             dir = os.path.join(os.path.dirname(__file__), "..", "puzzles", "pack1")
             basename = ChoiceMenu(_("Select puzzle"), list_puzzles(dir)).run()
-            file = os.path.join(dir, basename)
             if basename is None:
                 sys.exit(-1)
+            file = os.path.join(dir, basename)
         else:
             file = args[0]
         Game(file).run()
