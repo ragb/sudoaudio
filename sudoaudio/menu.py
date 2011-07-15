@@ -1,6 +1,7 @@
 import pygame
 import speech
-
+import sounds
+import utils
 
 class ChoiceMenu(object):
 
@@ -27,13 +28,22 @@ class ChoiceMenu(object):
         self.speakSelected()
 
 
-def test():
-    pygame.init()
-    pygame.display.init()
-    pygame.display.set_mode((640,480), 0, 8)
-    m = Menu("meu menu", ['rui', 'batista', 'sair'])
-    print m.run()
-    pygame.quit()
 
-if __name__ == '__main__':
-    test()
+class SoundSplash(object):
+
+    def __init__(self, soundname, allow_skeepping=True):
+        self._allow_skeepping = allow_skeepping
+        self._sound = sounds.SoundSource(soundname)
+        self._sound.set_volume(1.0)
+
+    def run(self):
+        self._sound.play(post_end_event=True)
+        running = True
+        while running :
+            for event in pygame.event.get():
+                if event.type == sounds.end_sound_event:
+                    running = False
+                    print "finished"
+                elif event.type == pygame.KEYDOWN and allow_skeepping:
+                    running = False
+

@@ -27,7 +27,8 @@ pygame.mixer.init()
 from gettext import gettext as _
 
 import speech
-from menu import ChoiceMenu
+import paths
+from menu import ChoiceMenu, SoundSplash
 
 logger = logging.getLogger(__name__)
 
@@ -192,6 +193,8 @@ def main(args):
         pygame.init()
         pygame.display.set_mode((640, 480))
         pygame.display.set_caption("sudoaudio")
+        s = SoundSplash(os.path.join(paths.sounds_path, "intro.ogg"))
+        s.run()
         if len(args) < 1:
             dir = os.path.join(os.path.dirname(__file__), "..", "puzzles", "pack1")
             basename = ChoiceMenu(_("Select puzzle"), list_puzzles(dir)).run()
