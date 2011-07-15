@@ -2,3 +2,4 @@ include AUTHORS
 include COPYING
 include README
 recursive-include puzzles/*
+recursive-include sudoaudio/sounds/*

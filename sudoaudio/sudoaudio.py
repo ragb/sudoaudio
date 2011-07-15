@@ -26,6 +26,7 @@ pygame.mixer.init()
 
 import speech
 import paths
+import sounds
 from menu import ChoiceMenu, SoundSplash
 
 import gettext
@@ -112,6 +113,9 @@ class Game(object):
         with open(filename) as f:
             self._board = Board.read_board(f)
         self._x = self._y = 0
+        self._move_sound = sounds.SoundSource(os.path.join(paths.sounds_path, "move.ogg"))
+        self._wrong_sound = sounds.SoundSource(os.path.join(paths.sounds_path, "wrong.ogg"))
+        self._win_sound = sounds.SoundSource(os.path.join(paths.sounds_path, "win.ogg"))
 
     def quit(self, event):
         self._playing = False
@@ -131,7 +135,7 @@ class Game(object):
         elif event.key == K_LEFT: y -= 1
         elif event.key == K_RIGHT: y +=1
         if x < 0 or x > 8 or y < 0 or y > 8:
-            pass # play invalid sound
+            self._wrong_sound.play()
         else:
             self._x, self._y = x, y
             self.speak_current()
@@ -140,8 +144,10 @@ class Game(object):
         value = event.key - K_0
         ret = self._board.put(self._x, self._y, value)
         if ret:
+            self._move_sound.play()
             self.speak_current()
             if self._board.is_solution():
+                self._win_sound.play()
                 speech.speak(_("Solution found"))
         else:
             speech.speak(_("Impossible move"))
@@ -193,7 +199,8 @@ def _set_logging(opts):
     if level:
         logging.basicConfig(level=level)
 
-def main(args):
+def main():
+    args = sys.argv[1:]
     speech.init()
     try:
         pygame.init()
@@ -218,4 +225,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()
