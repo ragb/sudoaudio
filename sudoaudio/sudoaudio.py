@@ -154,7 +154,7 @@ class Game(object):
 
     def position(self, event):
         # report this from 1 to 9, people count from one...
-        speech.speak("Row %d, column %d" % (self._x + 1, self._y + 1))
+        speech.speak(_("Row %d, column %d") % (self._x + 1, self._y + 1))
 
     def blanks(self, event):
         speech.speak("%d blanks" % self._board.blanks)
@@ -194,15 +194,20 @@ def list_puzzles(path):
     return sorted([f for f in os.listdir(path) if f.endswith(".sudo")])
 
 def _set_logging(opts):
-    level = os.environ['SUDOAUDIO_LOGLEVEL']
+    try:
+        level = os.environ['SUDOAUDIO_LOGLEVEL']
+    except KeyError:
+        return
     level = getattr(logging, level, None)
     if level:
         logging.basicConfig(level=level)
 
+_set_logging(None)
 def main():
     args = sys.argv[1:]
-    speech.init()
     try:
+        speech.init()
+        speech.set_voice_for_language()
         pygame.init()
         pygame.display.set_mode((640, 480))
         pygame.display.set_caption("sudoaudio")

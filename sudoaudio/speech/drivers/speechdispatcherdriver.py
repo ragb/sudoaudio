@@ -46,6 +46,21 @@ class Driver(_base.BaseDriver):
     def close(self):
         self._client.close()
 
+    def list_voices(self):
+        l = self._client.list_synthesis_voices()
+        logger.debug("Found voices: %s", l)
+        return l
+
+    def set_language(self, language, variant=None):
+        self._client.set_language(language)
+
+    def set_voice(self, voice):
+        logger.debug("Setting voice %s", voice)
+        self._client.set_synthesis_voice(voice)
+
+    def get_voice(self):
+        return None
+
     def __del__(self):
         if self._client:
             self._client.close()
