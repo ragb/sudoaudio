@@ -54,35 +54,45 @@ class Board(object):
         if self._rows[x][y] == value:
             return True
         if self._original[x][y] != 0:
-            print self._original[x][y]
             return False
         if value == 0:
             self._remaining += 1
             self._rows[x][y] = value
             return True
         else:
-            ret = self._check_row(x,value) and self._check_col(y, value) and self._check_square(x,y,value)
+            ret = value in self.possibilities(x ,y)
         if ret:
             if self._rows[x][y] == 0:
                 self._remaining -= 1
             self._rows[x][y] = value
         return ret
 
-    def _check_row(self, x, value):
-        return not any([self._rows[x][i] == value for i in range(9)])
+    def is_solution(self):
+        return self._remaining < 0
 
-    def _check_col(self, y, value):
-        return not any([self._rows[j][y] == value for j in range(9)])
+    def possibilities(self, x, y):
+        if self._original[x][y] != 0:
+            return [self._original[x][y]]
+        else:
+            possibilities = set(range(1,10))
+            # Subtract current row, column, and square values
+            possibilities.difference_update(set(self.row_values(x)),
+                set(self.column_values(y)),
+                set(self.square_values(x,y)))
+            if self._rows[x][y] != 0:
+                possibilities.add(self._rows[x][y])
+            return list(possibilities)
 
-    def _check_square(self, x, y, value):
+    def row_values(self,i):
+        return list(self._rows[i])
+
+    def column_values(self, j):
+        return [self._rows[i][j] for i in range(9)]
+
+    def square_values(self, x, y):
         basex = x - (x % 3)
         basey = y - (y % 3)
-        indexes = [(x, y) for x, y in itertools.product(range(basex, 3), range(basey, 3))]
-        return not any([self._rows[i][j] == value for i, j in indexes])
-
-
-    def is_solution(self):
-        return self._remaining == 0
+        return [self._rows[x][y] for x, y in itertools.product(range(basex, basex + 3), range(basey, basey + 3))]
 
     @property
     def blanks(self):
@@ -159,6 +169,14 @@ class Game(object):
     def blanks(self, event):
         speech.speak("%d blanks" % self._board.blanks)
 
+    def possibilities(self, event):
+        l = self._board.possibilities(self._x, self._y)
+        if l:
+            message = " ".join(map(str, l))
+            speech.speak(message)
+        else:
+            speech.speak(_("Nothing"))
+
     def speak_current(self):
         val = self._board.get(self._x, self._y)
         message = str(val) if val > 0 else _("Blank")
@@ -183,6 +201,7 @@ class Game(object):
     K_RIGHT : move,
     K_p : position,
     K_b : blanks,
+    K_s : possibilities,
     K_q : quit,
     K_ESCAPE : quit
     }
