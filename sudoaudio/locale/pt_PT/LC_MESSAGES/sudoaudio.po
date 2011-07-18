@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-15 19:19+WEST\n"
+"POT-Creation-Date: 2011-07-18 19:43+WEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,30 +15,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: sudoaudio/sudoaudio.py:122
+#: sudoaudio.py:132
 msgid "quitting"
 msgstr "Saindo"
 
-#: sudoaudio/sudoaudio.py:151
+#: sudoaudio.py:161
 msgid "Solution found"
 msgstr "Solução Encontrada"
 
-#: sudoaudio/sudoaudio.py:153
+#: sudoaudio.py:163
 msgid "Impossible move"
 msgstr "Jogada impossível"
 
-#: sudoaudio/sudoaudio.py:157
+#: sudoaudio.py:167
 msgid "Row %d, column %d"
 msgstr "Linha %d coluna %d"
 
-#: sudoaudio/sudoaudio.py:164
+#: sudoaudio.py:178
+msgid "Nothing"
+msgstr "Nada"
+
+#: sudoaudio.py:182
 msgid "Blank"
 msgstr "Branco"
 
-#: sudoaudio/sudoaudio.py:168
+#: sudoaudio.py:186
 msgid "Starting game"
 msgstr "Iniciando o jogo"
 
-#: sudoaudio/sudoaudio.py:218
+#: sudoaudio.py:237
 msgid "Select puzzle"
 msgstr "Escolha o Puzzle"
