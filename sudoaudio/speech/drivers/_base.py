@@ -36,6 +36,33 @@ class BaseDriver(object):
     def close(self):
         raise NotImplementedError
 
+    def list_voices(self):
+        """ Lists synth voices.
+        
+        returns: list of tupples with (name, language, variant)
+        """
+        return []
+
+    def get_voice(self, voice):
+        raise NotImplementedError
+
+    def set_voice(self, voice):
+        pass
+
+    def set_language(self, language, variant=None):
+        pass
+
+    def choose_for_language(self, language, variant=None):
+        """ Selects a synth voice from a given language and possible variant. """
+        variant = variant.lower() if variant is not None else variant
+        ret = None
+        for v in self.list_voices():
+            if v[1].lower() == language:
+                ret = v
+                if v[2].lower() == variant:
+                    return ret
+        return ret
+
 
 _registry = None
 
