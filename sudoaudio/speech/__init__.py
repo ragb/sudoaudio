@@ -49,7 +49,7 @@ def set_voice_for_language(language=None, variant=None):
         logger.info ("Found voice %s for locale %s", voice, loc)
         return voice[0]
     else:
-        logger.info("Cannot find voice for locale %s, %s", language, variante)
+        logger.info("Cannot find voice for locale %s, %s", language, variant)
     return False
 
 def quit():
