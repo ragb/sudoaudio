@@ -24,20 +24,30 @@ _driver = None
 
 def init():
     global _driver
+    if _driver:
+        return None
     drivers = list_drivers()
+    if not drivers:
+        raise Exception, "No speech drivers can be fuond"
     _driver = drivers[0]("generic")
     logger.info("Using driver %s", _driver.name)
 
+def get_current_driver():
+    return _driver
+
 def speak(message, cancel=True):
     global _driver
+    assert _driver, "Speech module not initialized"
     if cancel:
         _driver.cancel()
     _driver.speak(message)
 
 def cancel():
+    assert _driver, "Speech module not initialized"
     _driver.cancel()
 
 def set_voice_for_language(language=None, variant=None):
+    assert _driver, "Speech module not initialized"
     if language is None:
         # read from the current local
         loc, encoding = locale.getdefaultlocale()
@@ -53,6 +63,10 @@ def set_voice_for_language(language=None, variant=None):
     return False
 
 def quit():
+    global _driver
+    if not _driver:
+        return
     if _driver:
         _driver.close()
         logger.info("Quitting speech")
+        _driver = None

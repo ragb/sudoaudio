@@ -34,6 +34,7 @@ class Driver(_base.BaseDriver):
         super(_base.BaseDriver, self).__init__()
         self._client = speechd.SSIPClient(name)
         logger.debug("Connected to speech-dispatcher")
+        self._synth_voice = None
 
     def speak(self, message):
         logger.debug("Speaking %s", message)
@@ -57,9 +58,10 @@ class Driver(_base.BaseDriver):
     def set_voice(self, voice):
         logger.debug("Setting voice %s", voice)
         self._client.set_synthesis_voice(voice)
+        self._synth_voice = voice
 
     def get_voice(self):
-        return None
+        return self._synth_voice
 
     def __del__(self):
         if self._client:
