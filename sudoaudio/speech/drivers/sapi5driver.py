@@ -37,8 +37,6 @@ except:
 	raise _base.DriverNotSupportedException, "SAPI5 is not Installed"
 
 
-COM_CLASS = "SAPI.SPVoice"
-
 
 class constants:
 	SVSFlagsAsync = 1
@@ -54,10 +52,10 @@ class Driver(_base.BaseDriver):
 		self.tts=comtypes.client.CreateObject(COM_CLASS)
 
 	def speak(self, message):
-		self.tts.speak(message, 0)
+		self.tts.speak(message, constants.SVSFlagsAsync)
 
 	def cancel(self):
-		self.tts.Speak(None, 1|constants.SVSFPurgeBeforeSpeak)
+		self.tts.Speak(None, constants.SVSFlagsAsync | constants.SVSFPurgeBeforeSpeak)
 
 	def close(self):
 		pass
