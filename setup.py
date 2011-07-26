@@ -1,4 +1,12 @@
+import sys
 from setuptools import setup, find_packages
+
+extra_kwargs = {}
+
+# py2exe support
+if sys.platform == 'win32':
+    import py2exe
+    extra_kwargs['console'] = 'sudoaudio/sudoaudio.py'
 
 setup(
     name='sudoaudio',
@@ -9,7 +17,9 @@ setup(
     long_description=open('README').read(),
     
     author = "Rui Batista",
-    author_email = "ruiandrebatista@gmail.com"
+    author_email = "ruiandrebatista@gmail.com",
+    **extra_kwargs
 )
+
 
 
