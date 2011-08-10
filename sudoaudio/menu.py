@@ -15,29 +15,35 @@
 
 
 import pygame
+
+import core
 import speech
 import sounds
 import utils
 
-class ChoiceMenu(object):
+class ChoiceMenu(core.VoiceDialog):
 
     def __init__(self, title, options, selected_sound=None, changed_sound=None):
         self._title, self._options = title, options
         self._selected_sound, self._changed_sound = selected_sound, changed_sound
         self._index = 0
 
-    def run(self):
+    def on_run(self):
         speech.speak(self._title)
         speech.speak(self._options[self._index], cancel=False)
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP: self.changeSelection((self._index - 1) % len(self._options))
-                    elif event.key == pygame.K_DOWN: self.changeSelection((self._index + 1) % len(self._options))
-                    elif event.key == pygame.K_ESCAPE: return None
-                    elif event.key == pygame.K_RETURN:
-                        if self._selected_sound: self._selected_sound.play()
-                        return self._options[self._index]
+
+    @core.key_event(pygame.K_UP)
+    def up(self, event):
+        self.changeSelection((self._index - 1) % len(self._options))
+
+    @core.key_event(pygame.K_DOWN)
+    def down(self, event):
+        self.changeSelection((self._index + 1) % len(self._options))
+
+    @core.key_event(pygame.K_RETURN)
+    def enter(self, event):
+        if self._selected_sound: self._selected_sound.play()
+        self.quit(self._options[self._index])
 
     def speakSelected(self):
         speech.speak(self._options[self._index])

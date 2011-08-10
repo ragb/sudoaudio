@@ -24,6 +24,7 @@ import pygame
 from pygame.locals import *
 pygame.mixer.init()
 
+import core
 import speech
 import paths
 import sounds
@@ -117,7 +118,7 @@ class Board(object):
         return Board(rows)
 
 
-class Game(object):
+class Game(core.PygameMainLoop):
 
     def __init__(self, filename):
         with open(filename) as f:
@@ -127,17 +128,12 @@ class Game(object):
         self._wrong_sound = sounds.SoundSource(os.path.join(paths.sounds_path, "wrong.ogg"))
         self._win_sound = sounds.SoundSource(os.path.join(paths.sounds_path, "win.ogg"))
 
-    def quit(self, event):
-        self._playing = False
+    @core.key_event(K_q)
+    def quit_game(self, event):
         speech.speak(_("quitting"))
+        self.quit(None)
 
-    def _dispatch_keydown(self, event):
-        try:
-            func = Game._key_handlers[event.key]
-            func(self, event)
-        except KeyError:
-            pass
-
+    @core.key_event(K_UP, K_DOWN, K_LEFT, K_RIGHT)
     def move(self, event):
         x, y = self._x, self._y
         if event.key == K_UP: x -= 1
@@ -150,6 +146,7 @@ class Game(object):
             self._x, self._y = x, y
             self.speak_current()
 
+    @core.key_event(*range(K_0, K_9 +1))
     def put(self, event):
         value = event.key - K_0
         ret = self._board.put(self._x, self._y, value)
@@ -162,13 +159,16 @@ class Game(object):
         else:
             speech.speak(_("Impossible move"))
 
+    @core.key_event(K_p)
     def position(self, event):
         # report this from 1 to 9, people count from one...
         speech.speak(_("Row %d, column %d") % (self._x + 1, self._y + 1))
 
+    @core.key_event(K_b)
     def blanks(self, event):
         speech.speak("%d blanks" % self._board.blanks)
 
+    @core.key_event(K_s)
     def possibilities(self, event):
         l = self._board.possibilities(self._x, self._y)
         if l:
@@ -182,31 +182,10 @@ class Game(object):
         message = str(val) if val > 0 else _("Blank")
         speech.speak(message)
 
-    def run(self):
+    def on_runn(self):
         speech.speak(_("Starting game"))
         time.sleep(1)
         self.speak_current()
-        self._playing = True
-        while self._playing:
-            for event in pygame.event.get():
-                if event.type == KEYDOWN:
-                    self._dispatch_keydown(event)
-                elif event.type == QUIT:
-                    _playing = False
-
-    _key_handlers = {
-    K_DOWN : move,
-    K_UP : move,
-    K_LEFT : move,
-    K_RIGHT : move,
-    K_p : position,
-    K_b : blanks,
-    K_s : possibilities,
-    K_q : quit,
-    K_ESCAPE : quit
-    }
-    for i in range(K_0, K_9 + 1):
-        _key_handlers[i] = put
 
 def list_puzzles(path):
     import glob
