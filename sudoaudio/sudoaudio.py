@@ -201,6 +201,7 @@ def _set_logging(opts):
         logging.basicConfig(level=level)
 
 _set_logging(None)
+
 def main():
     args = sys.argv[1:]
     try:

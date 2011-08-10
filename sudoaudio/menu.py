@@ -56,21 +56,20 @@ class ChoiceMenu(core.VoiceDialog):
 
 
 
-class SoundSplash(object):
+class SoundSplash(core.PygameMainLoop):
 
     def __init__(self, soundname, allow_skeepping=True):
         self._allow_skeepping = allow_skeepping
         self._sound = sounds.SoundSource(soundname)
         self._sound.set_volume(1.0)
 
-    def run(self):
+    def on_run(self):
         self._sound.play(post_end_event=True)
-        running = True
-        while running :
-            for event in pygame.event.get():
-                if event.type == sounds.end_sound_event:
-                    running = False
-                elif event.type == pygame.KEYDOWN and self._allow_skeepping:
-                    self._sound.stop()
-                    running = False
+
+    def on_event_default(self, event):
+        if event.type == sounds.end_sound_event:
+            self.quit()
+        elif event.type == pygame.KEYDOWN and self._allow_skeepping:
+            self._sound.stop()
+            self.quit()
 

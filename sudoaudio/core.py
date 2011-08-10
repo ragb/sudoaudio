@@ -61,11 +61,13 @@ class PygameMainLoop(object):
     def dispatch_event(self, event):
         if event.type == pygame.QUIT:
             self.on_quit_event()
-        elif event.type == pygame.KEYDOWN:
-            if event.key in self.__key_handlers__:
-                self.__key_handlers__[event.key](self,event)
+        elif event.type == pygame.KEYDOWN and event.key in self.__key_handlers__:
+            self.__key_handlers__[event.key](self,event)
+        else:
+            self.on_event_default(event)
 
     def on_quit_event(self):
+        pygame.quit()
         sys.exit(0)
 
     def get_events(self):
@@ -80,9 +82,14 @@ class PygameMainLoop(object):
     def on_run(self):
         pass
 
+    def on_event_default(self, event):
+        pass
+
 class VoiceDialog(PygameMainLoop):
 
     @key_event(pygame.K_ESCAPE)
     def escape(self, event):
         self.quit(None)
 
+    def get_events(self):
+        return [pygame.event.wait()]
