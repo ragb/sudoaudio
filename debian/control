@@ -1,0 +1,15 @@
+Source: sudoaudio
+Section: games
+Priority: extra
+Maintainer: Rui Batista <ruiandrebatista@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~), python-support, python(>= 2.6)
+Standards-Version: 3.8.4
+Homepage: http://www.megatts.com/jogos
+Vcs-Git: git://github.com/ragb/sudoaudio.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/sudoaudio.git;a=summary
+
+Package: sudoaudio
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-pygame(>= 1.9), python-speechd
+Description: Sudoku audio game
+ Sudoku audio game using synthetic voice and sounds.
