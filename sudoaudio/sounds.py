@@ -30,7 +30,8 @@ class SoundSource(object):
 
     def play(self, loop=0, post_end_event=False):
         self._channel = self._sound.play(loop)
-        self._channel.set_endevent(end_sound_event)
+        if post_end_event:
+            self._channel.set_endevent(end_sound_event)
 
     def stop(self):
         if self._channel:

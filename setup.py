@@ -10,7 +10,7 @@ if sys.platform == 'win32':
 
 setup(
     name='sudoaudio',
-    version='0.1a1',
+    version='0.1',
     packages= find_packages(),
     license='GPL v3',
     install_requires = ['pygame'],
