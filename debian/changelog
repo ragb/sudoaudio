@@ -1,0 +1,5 @@
+sudoaudio (0.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Rui Batista <ruiandrebatista@gmail.com>  Fri, 12 Aug 2011 11:54:20 +0100

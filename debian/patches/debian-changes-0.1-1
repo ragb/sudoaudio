@@ -1,0 +1,35 @@
+Description: Upstream changes introduced in version 0.1-1
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ sudoaudio (0.1-1) unstable; urgency=low
+ .
+   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Rui Batista <ruiandrebatista@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- sudoaudio-0.1.orig/sudoaudio.egg-info/SOURCES.txt
++++ sudoaudio-0.1/sudoaudio.egg-info/SOURCES.txt
+@@ -2,6 +2,7 @@ AUTHORS
+ COPYING
+ MANIFEST.in
+ README
++setup.cfg
+ setup.py
+ puzzles/test.sudo
+ puzzles/pack1/1.sudo
