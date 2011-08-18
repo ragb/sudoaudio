@@ -213,7 +213,7 @@ def main():
         s = SoundSplash(os.path.join(paths.sounds_path, "intro.ogg"))
         s.run()
         if len(args) < 1:
-            dir = os.path.join(os.path.dirname(__file__), "..", "puzzles", "pack1")
+            dir = os.path.join(os.path.dirname(__file__), "puzzles", "pack1")
             basename = ChoiceMenu(_("Select puzzle"), list_puzzles(dir)).run()
             if basename is None:
                 sys.exit(-1)

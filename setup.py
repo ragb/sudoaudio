@@ -6,7 +6,7 @@ extra_kwargs = {}
 # py2exe support
 if sys.platform == 'win32':
     import py2exe
-    extra_kwargs['console'] = ['scripts/sudoaudio.py'],
+    extra_kwargs['console'] = ['scripts/sudoaudio'],
 
 setup(
     name='sudoaudio',
@@ -18,7 +18,7 @@ setup(
     
     author = "Rui Batista",
     author_email = "ruiandrebatista@gmail.com",
-    scripts = ["scripts/sudoaudio.py"],
+    scripts = ["scripts/sudoaudio"],
     **extra_kwargs
 )
 
