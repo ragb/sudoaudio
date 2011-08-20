@@ -30,15 +30,16 @@ if not sys.platform == "win32":
 try:
     #Load the NVDA client library
 
-    clientLib = ctypes.windll.LoadLibrary(os.path.join(os.dirname(__file__), 'nvdaControllerClient32.dll'))
-except:
+    clientLib = ctypes.windll.LoadLibrary(os.path.join(os.path.dirname(__file__), 'nvdaControllerClient32.dll'))
+except Exception, e:
     logger.debug("Can't load NVDA DLL")
+    logger.exception(e)
     raise _base.DriverNotSupportedException, "NVDA not present"
 
 res=clientLib.nvdaController_testIfRunning()
 if res!=0:
     errorMessage=str(ctypes.WinError(res))
-raise _base.DriverNotSupportedException, "NVDA is not running. Error: %s" % errorMessage    
+    raise _base.DriverNotSupportedException, "NVDA is not running. Error: %s" % errorMessage
 
 
 class Driver(_base.BaseDriver):
@@ -51,5 +52,7 @@ class Driver(_base.BaseDriver):
         clientLib.nvdaController_speakText(unicode(message))
 
     def cancel(self):
-        clientLib.cancelSpeech()
+        clientLib.nvdaController_cancelSpeech()
 
+    def close(self):
+        pass
