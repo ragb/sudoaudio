@@ -12,7 +12,8 @@ if sys.platform == 'win32':
     extra_kwargs['console'] = ['scripts/sudoaudio']
     options.update({'py2exe' : {
     'bundle_files' : 2,
-    'packages' : 'sudoaudio'})
+    'packages' : 'sudoaudio'
+    }})
 
 
 
