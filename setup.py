@@ -1,12 +1,20 @@
 import sys, os
 from setuptools import setup, find_packages
 
+version = "0.2beta1"
+
 extra_kwargs = {}
+options = {}
 
 # py2exe support
 if sys.platform == 'win32':
     import py2exe
     extra_kwargs['console'] = ['scripts/sudoaudio']
+    options.update({'py2exe' : {
+    'bundle_files' : 2,
+    'packages' : 'sudoaudio'})
+
+
 
     origIsSystemDLL = py2exe.build_exe.isSystemDLL
     def isSystemDLL(pathname):
@@ -20,15 +28,15 @@ if sys.platform == 'win32':
 
 setup(
     name='sudoaudio',
-    version='0.1',
+    version=version,
     packages= find_packages(),
     license='GPL v3',
     install_requires = ['pygame'],
     long_description=open('README').read(),
-    
     author = "Rui Batista",
     author_email = "ruiandrebatista@gmail.com",
     scripts = ["scripts/sudoaudio"],
+    options=options,
     **extra_kwargs
 )
 
