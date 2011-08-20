@@ -1,0 +1,3 @@
+import sudoaudio
+
+sudoaudio.main()
