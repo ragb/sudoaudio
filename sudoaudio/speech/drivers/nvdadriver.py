@@ -13,9 +13,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import ctypes
 import logging
+import os
+import os.path
 import sys
 
 import _base
@@ -28,7 +29,7 @@ if not sys.platform == "win32":
 
 try:
     #Load the NVDA client library
-    clientLib=ctypes.windll.LoadLibrary('./nvdaControllerClient32.dll')
+    clientLib = ctypes.windll.LoadLibrary(os.path.join(os.dirname(__file__), 'nvdaControllerClient32.dll))
 except:
     logger.debug("Can't load NVDA DLL")
     raise _base.DriverNotSupportedException, "NVDA not present"
