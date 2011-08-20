@@ -13,11 +13,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import glob
 import logging
 import os.path
-
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -71,12 +70,13 @@ def _load_registry():
     logger.info("loading speech drivers")
     _registry = []
     basepath = os.path.abspath(os.path.dirname(__file__))
-    files = glob.glob(os.path.join(basepath, "*driver.py"))
+    platform = sys.platform
+    files = glob.glob(os.path.join(basepath, platform, "*driver.py"))
     modules = [os.path.basename(f)[:-3] for f in files] # strip ".py"
     for module in modules:
         try:
             logger.info("Trying to import module %s", module)
-            m = __import__(module, globals=globals())
+            m = __import__(module, globals=globals(), fromlist=[platform])
         except DriverNotSupportedException:
             logger.info("Module can not be imported")
             continue

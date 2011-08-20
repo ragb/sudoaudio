@@ -19,7 +19,7 @@ import os
 import os.path
 import sys
 
-import _base
+from .. import _base
 
 logger = logging.getLogger(__name__)
 
