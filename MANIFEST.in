@@ -4,4 +4,4 @@ include README
 include MANIFEST.in
 recursive-include sudoaudio/puzzles *
 recursive-include sudoaudio/sounds *
-recursive-include sudoaudio/locale *
+recursive-include sudoaudio/locale *include sudoaudio/speech/drivers/nvdaControlerClient32.dll
