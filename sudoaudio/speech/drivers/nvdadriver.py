@@ -29,6 +29,7 @@ if not sys.platform == "win32":
 
 try:
     #Load the NVDA client library
+
     clientLib = ctypes.windll.LoadLibrary(os.path.join(os.dirname(__file__), 'nvdaControllerClient32.dll'))
 except:
     logger.debug("Can't load NVDA DLL")
