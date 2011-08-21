@@ -11,17 +11,20 @@ if sys.platform == 'win32':
     import py2exe
     extra_kwargs['console'] = ['scripts/sudoaudio']
     options.update({'py2exe' : {
-    'bundle_files' : 2,
-    'packages' : 'sudoaudio'
+    'bundle_files' : 3,
+    'packages' : ['sudoaudio.speech.drivers.win32'],
+    'excludes' : ['Tkinter'],
     }})
-
-
 
     origIsSystemDLL = py2exe.build_exe.isSystemDLL
     def isSystemDLL(pathname):
-            p = os.path.basename(pathname).lower()
-            if p in ("sdl_mixer.dll", "sdl_ttf.dll", "libogg-0.dll") or p.find("sdl") >= 0 or p.find("pygame") >= 0:
-                    return 0
+        dll = os.path.basename(pathname).lower()
+        if dll in ("libfreetype-6.dll", "sdl_mixer.dll", "sdl_ttf.dll", "libogg-0.dll", "msvcp71.dll", "msvcp90.dll", "gdiplus.dll","mfc71.dll", "mfc90.dll") or dll.startswith("sdl"):
+            return 0
+        elif dll.startswith("api-ms-win-") or dll == "powrprof.dll":
+            # These are definitely system dlls available on all systems and must be excluded.
+            # Including them can cause serious problems when a binary build is run on a different version of Windows.
+            return 1
             return origIsSystemDLL(pathname)
     py2exe.build_exe.isSystemDLL = isSystemDLL
 
@@ -40,6 +43,7 @@ setup(
     options=options,
     **extra_kwargs
 )
+
 
 
 
