@@ -73,14 +73,13 @@ def _load_registry():
     basepath = os.path.abspath(os.path.dirname(__file__))
     platform = __import__(sys.platform, globals(), locals())
     path = platform.__path__
-    modules = []
+
     for loader, name, ispkg in pkgutil.iter_modules(path=path):
-        if 'driver' in name:
-            modules.append(name)
-    for module in modules:
+        if 'driver' not in name:
+            continue
         try:
-            logger.info("Trying to import module %s", module)
-            m = __import__(module, globals=globals())
+            logger.info("Trying to import module %s", name)
+            m = __import__(name, globals=globals())
         except DriverNotSupportedException:
             logger.info("Module can not be imported")
             continue
@@ -89,10 +88,10 @@ def _load_registry():
             _registry.append(d)
         except AttributeError:
             logger.error("module %s does not contain a driver class", m.__name__)
-        if not _registry:
-            logger.critical("No drivers loaded")
-            return False
-        return True
+    if not _registry:
+        logger.critical("No drivers loaded")
+        return False
+    return True
 
 def list_drivers():
     if _registry is None:
