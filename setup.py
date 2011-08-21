@@ -15,7 +15,7 @@ if sys.platform == 'win32':
     extra_kwargs['console'] = ['scripts/sudoaudio']
     options.update({'py2exe' : {
     'bundle_files' : 3,
-    'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32'],
+    'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32', 'pygame'],
     'excludes' : ['Tkinter'],
     }})
 
