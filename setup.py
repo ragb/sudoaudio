@@ -1,9 +1,15 @@
 import glob
 import sys, os
-from setuptools import setup, find_packages, findall
+from distutils.core import setup
+
 
 
 version = "0.2beta1"
+packages = ["sudoaudio",
+"sudoaudio.speech",
+"sudoaudio.speech.drivers",
+"sudoaudio.speech.drivers.linux2",
+"sudoaudio.speech.drivers.win32"]
 
 extra_kwargs = {}
 options = {}
@@ -37,7 +43,7 @@ if sys.platform == 'win32':
 setup(
     name='sudoaudio',
     version=version,
-    packages= find_packages(),
+    packages= packages,
     license='GPL v3',
     install_requires = ['pygame'],
     long_description=open('README').read(),
