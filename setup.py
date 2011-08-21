@@ -21,7 +21,7 @@ if sys.platform == 'win32':
     'packages' : ['sudoaudio.speech.drivers.win32'],
     'excludes' : ['Tkinter'],
     }})
-    data_files += globl.glob("sudoaudio/speech/drivers/win32/*.dll")
+    data_files += glob.glob("sudoaudio/speech/drivers/win32/*.dll")
 
 
     origIsSystemDLL = py2exe.build_exe.isSystemDLL
