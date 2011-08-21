@@ -31,6 +31,7 @@ try:
     #Load the NVDA client library
 
     clientLib = ctypes.windll.LoadLibrary(os.path.join(os.path.dirname(__file__), 'nvdaControllerClient32.dll'))
+    logger.debug("Loaded NVDA controller dll")
 except Exception, e:
     logger.debug("Can't load NVDA DLL")
     logger.exception(e)
@@ -39,6 +40,7 @@ except Exception, e:
 res=clientLib.nvdaController_testIfRunning()
 if res!=0:
     errorMessage=str(ctypes.WinError(res))
+    logger.debug("NVDA is not Running")
     raise _base.DriverNotSupportedException, "NVDA is not running. Error: %s" % errorMessage
 
 
