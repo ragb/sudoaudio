@@ -28,6 +28,7 @@ options = {}
 # py2exe support
 if sys.platform == 'win32':
     import py2exe
+    extra_kwargs['console'] = ["scripts/sudoaudio"]
     options.update({'py2exe' : {
     'bundle_files' : 3,
     'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32', 'pygame'],
