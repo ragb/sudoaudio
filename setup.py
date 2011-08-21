@@ -3,7 +3,6 @@ import sys, os
 from setuptools import setup, find_packages, findall
 
 
-
 version = "0.2beta1"
 
 extra_kwargs = {}
@@ -15,6 +14,7 @@ if sys.platform == 'win32':
     extra_kwargs['console'] = ['scripts/sudoaudio']
     options.update({'py2exe' : {
     'bundle_files' : 3,
+    'zipfile' : None,
     'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32', 'pygame'],
     'excludes' : ['Tkinter'],
     }})
