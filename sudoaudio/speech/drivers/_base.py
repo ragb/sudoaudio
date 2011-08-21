@@ -73,7 +73,6 @@ def _load_registry():
     basepath = os.path.abspath(os.path.dirname(__file__))
     platform = __import__(sys.platform, globals(), locals())
     path = platform.__path__
-    logger.debug(path)
     modules = []
     for loader, name, ispkg in pkgutil.iter_modules(path=path):
         if 'driver' in name:
@@ -81,7 +80,7 @@ def _load_registry():
     for module in modules:
         try:
             logger.info("Trying to import module %s", module)
-            m = __import__(module, globals=globals(), fromlist=[platform])
+            m = __import__(module, globals=globals(), fromlist=[sys.platform])
         except DriverNotSupportedException:
             logger.info("Module can not be imported")
             continue
