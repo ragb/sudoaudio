@@ -29,7 +29,7 @@ if sys.platform == 'win32':
             # These are definitely system dlls available on all systems and must be excluded.
             # Including them can cause serious problems when a binary build is run on a different version of Windows.
             return 1
-            return origIsSystemDLL(pathname)
+        return origIsSystemDLL(pathname)
     py2exe.build_exe.isSystemDLL = isSystemDLL
 
 
