@@ -128,10 +128,25 @@ class Game(core.PygameMainLoop):
         self._wrong_sound = sounds.SoundSource(os.path.join(paths.sounds_path, "wrong.ogg"))
         self._win_sound = sounds.SoundSource(os.path.join(paths.sounds_path, "win.ogg"))
 
+    def on_run(self):
+        speech.speak(_("You are in the top left corner of the Puzzle. Press the h key for help with the game."))
     @core.key_event(K_q)
     def quit_game(self, event):
         speech.speak(_("quitting"))
         self.quit(None)
+
+    @core.key_event(K_h)
+    def help(self, event):
+        help_string = _("""
+        To move around the board use the arrow keys.
+        To put a number on a square use numbers from 1 to 9.
+        To clear a square use the 0 key. A square can only be cleared if it was blank on the original puzzle.
+        To speak the current square position on the board use the p key.
+        To know how many squares are still blank press b.
+        To speak what possibilities exist for the current square press s.
+        To quit the game press the q key.
+        """)
+        speech.speak(help_string)
 
     @core.key_event(K_UP, K_DOWN, K_LEFT, K_RIGHT)
     def move(self, event):

@@ -15,7 +15,7 @@
 
 import logging
 
-import _base
+from .. import _base
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +24,7 @@ try:
     from comtypes import COMError
     import _winreg
 except ImportError:
+    logger.debug("Can't load sapi5 driver to error in importing modules")
     raise _base.DriverNotSupportedException, "Comm modules not present"
 
 COM_CLASS = "SAPI.SPVoice"
@@ -33,7 +34,7 @@ try:
 	r.Close()
 	logger.debug("SAPI5 is present")
 except:
-	logger.debug("SAPI% not present")
+	logger.debug("SAPI5 not present")
 	raise _base.DriverNotSupportedException, "SAPI5 is not Installed"
 
 

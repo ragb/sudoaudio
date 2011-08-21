@@ -13,11 +13,11 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import glob
 import logging
 import os.path
-
+import pkgutil
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -71,12 +71,15 @@ def _load_registry():
     logger.info("loading speech drivers")
     _registry = []
     basepath = os.path.abspath(os.path.dirname(__file__))
-    files = glob.glob(os.path.join(basepath, "*driver.py"))
-    modules = [os.path.basename(f)[:-3] for f in files] # strip ".py"
-    for module in modules:
+    platform = __import__(sys.platform, globals(), locals())
+    path = platform.__path__
+
+    for loader, name, ispkg in pkgutil.iter_modules(path=path):
+        if 'driver' not in name:
+            continue
         try:
-            logger.info("Trying to import module %s", module)
-            m = __import__(module, globals=globals())
+            logger.info("Trying to import module %s", name)
+            m = __import__(name, globals=globals())
         except DriverNotSupportedException:
             logger.info("Module can not be imported")
             continue
@@ -85,10 +88,10 @@ def _load_registry():
             _registry.append(d)
         except AttributeError:
             logger.error("module %s does not contain a driver class", m.__name__)
-        if not _registry:
-            logger.critical("No drivers loaded")
-            return False
-        return True
+    if not _registry:
+        logger.critical("No drivers loaded")
+        return False
+    return True
 
 def list_drivers():
     if _registry is None:

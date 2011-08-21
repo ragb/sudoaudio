@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Sudoaudio 0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-20 21:28+0100\n"
+"PO-Revision-Date: 2011-08-20 21:06\n"
+"Last-Translator: Rui Batista <ruiandrebatista@gmail.com>\n"
+"Language-Team: pt <PT@li.org>\n"
+"Language: pt_pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: game.py:132
+msgid ""
+"You are in the top left corner of the Puzzle. Press the h key for help with "
+"the game."
+msgstr ""
+"Encontra-se no canto superior esquerdo do Puzzle.Prima H para ajuda com o "
+"jogo."
+
+#: game.py:135
+msgid "quitting"
+msgstr "Saindo"
+
+#: game.py:140
+msgid ""
+"\n"
+"        To move around the board use the arrow keys.\n"
+"        To put a number on a square use numbers from 1 to 9.\n"
+"        To clear a square use the 0 key. A square can only be cleared if it "
+"was blank on the original puzzle.\n"
+"        To speak the current square position on the board use the p key.\n"
+"        To know how many squares are still blank press b.\n"
+"        To speak what possibilities exist for the current square press s.\n"
+"        To quit the game press the q key.\n"
+"        "
+msgstr ""
+"\n"
+"Para se mover no taboleiro use as setas direcionais.\n"
+"Para colocar um número num quadrado utilize os números de 1 a 9.\n"
+"Para limpar um quadrado use a tecla 0. Um quadrado só pode ser limpo se "
+"estiver em branco no Puzzle original.\n"
+"Para anunciar a posição do quadrado actual no taboleiro prima p.\n"
+"Para saber quantos quadrados faltam preencher use b.\n"
+"Para anunciar quais as possibilidades para o quadrado actual prima s.\n"
+"Para sair do jogo prima a tecla q."
+
+#: game.py:173
+msgid "Solution found"
+msgstr "Solução Encontrada"
+
+#: game.py:175
+msgid "Impossible move"
+msgstr "Jogada impossível"
+
+#: game.py:180
+#, python-format
+msgid "Row %d, column %d"
+msgstr "Linha %d coluna %d"
+
+#: game.py:193
+msgid "Nothing"
+msgstr "Nada"
+
+#: game.py:197
+msgid "Blank"
+msgstr "Branco"
+
+#: game.py:201
+msgid "Starting game"
+msgstr "Iniciando o jogo"
+
+#: game.py:232
+msgid "Select puzzle"
+msgstr "Escolha o Puzzle"

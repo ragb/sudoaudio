@@ -10,15 +10,19 @@ Rui batista <ruiandrebatista@gmail.com>
 
 This software is covered under the terms of the GNU General Public License version 3 or any later version of this license. Check the file COPYING for details.
 
-== how to use ==
+== how to run ==
 
-for now run in the root source dir
+The following instructions are for running from source code. binary packages (in particular for dum platforms like win32) will be provided for users benefit.
 
-python sudoaudio/sudoaudio.py
+If you are running from source you can execute in the root source dir:
+
+python sudoaudio
+
+You will be prompted for a puzzle to choose.
 
 or
 
-python sudoaudio/sudoaudio.py <puzzlefile>
+python sudoaudio <puzzlefile>
 
 The puzzle file should be in the following format:
 * 9 (nine) lines
@@ -26,12 +30,14 @@ The puzzle file should be in the following format:
 * numbers can be from 0 to 9, where 0 means a blank square.
 * In the puzzles folder there are a bunch of example instances.
 
+There are many puzzles in the sudoaudio/puzzles directory. You can also put your own there.
+
 == Requirements ==
 
 * Python 2.6 or greater
-* pygame 1.9 or greate
+* pygame 1.9 or greater
 * Speech-dispatcher (a recent version should work) and its python bindings, to run under linux
-* SAPI5 on windows (not well tested) and the comtypes python library.
+* the NVDA screen reader or SAPI5 on windows (not well tested) and the comtypes python library to use SAPI5.
 
 == Why Sudoaudio ==
 
@@ -39,7 +45,7 @@ The main reason behind sudoaudio development is the lake of a sudoku audio inter
 
 On the other hand the code developed in this project can be used on other projects, in the future can become a library on itself for audiogames development.
 
-== Goals: ==
+== Future goals ==
 
 * Make Sodoaudio run at least on Windows and Linux platforms (create binaries if possible)
 * Make a graphical user interface so that the audio is accompanied with the sudoku board on the screen.
