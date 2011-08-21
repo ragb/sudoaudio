@@ -19,7 +19,11 @@ def get_puzzle_files():
 
 def get_windows_dlls():
     return glob.glob(os.path.join("sudoaudio", "speech", "drivers", "win32", "*.dll"))
-files = get_locale_files() + get_puzzle_files() + get_windows_dlls()
+
+def get_sound_files():
+    return glob.glob(os.path.join("sudoaudio", "sounds", "*"))
+
+files = get_locale_files() + get_puzzle_files() + get_windows_dlls() + get_sound_files()
 data_files = [(os.path.dirname(f), (f,)) for f in files]
 
 extra_kwargs = {}
