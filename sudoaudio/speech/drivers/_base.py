@@ -16,6 +16,7 @@
 import glob
 import logging
 import os.path
+import pkgutil
 import sys
 
 logger = logging.getLogger(__name__)
@@ -71,8 +72,11 @@ def _load_registry():
     _registry = []
     basepath = os.path.abspath(os.path.dirname(__file__))
     platform = sys.platform
-    files = glob.glob(os.path.join(basepath, platform, "*driver.py"))
-    modules = [os.path.basename(f)[:-3] for f in files] # strip ".py"
+    path = os.path.join(basepath, platform)
+    modules = []
+    for loader, name, ispkg in pkgutil.iter_modules(path=[path]):
+        if 'driver' in name:
+            modules.append(name)
     for module in modules:
         try:
             logger.info("Trying to import module %s", module)
