@@ -30,6 +30,8 @@ import paths
 import sounds
 from menu import ChoiceMenu, SoundSplash
 
+import utils
+
 import gettext
 gettext.bindtextdomain("sudoaudio", paths.localedir)
 gettext.textdomain("sudoaudio")
@@ -220,6 +222,7 @@ _set_logging(None)
 def main():
     args = sys.argv[1:]
     try:
+        utils.adjust_pythonpath()
         speech.init()
         speech.set_voice_for_language()
         pygame.init()

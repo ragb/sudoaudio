@@ -13,6 +13,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import sys
 
 import pygame
 
@@ -25,3 +26,14 @@ def get_new_event_id():
     ret = _free_event_id
     _free_event_id += 1
     return ret
+
+
+def adjust_pythonpath():
+    """ adjusts python path so we can import from the dist dir."""
+    # code adapted from nvda screen reader.
+    if getattr(sys, "frozen", None):
+        # We are running as an executable.
+        # Append the path of the executable to sys so we can import modules from the dist dir.
+        sys.path.append(sys.prefix)
+        os.chdir(sys.prefix)
+
