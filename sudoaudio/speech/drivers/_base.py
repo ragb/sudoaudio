@@ -80,7 +80,7 @@ def _load_registry():
     for module in modules:
         try:
             logger.info("Trying to import module %s", module)
-            m = __import__(module, globals=globals(), fromlist=[sys.platform])
+            m = __import__(module, globals=globals())
         except DriverNotSupportedException:
             logger.info("Module can not be imported")
             continue
