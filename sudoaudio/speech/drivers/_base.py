@@ -71,10 +71,11 @@ def _load_registry():
     logger.info("loading speech drivers")
     _registry = []
     basepath = os.path.abspath(os.path.dirname(__file__))
-    platform = sys.platform
-    path = os.path.join(basepath, platform)
+    platform = __import__(sys.platform, globals(), locals())
+    path = platform.__path__
+    logger.debug(path)
     modules = []
-    for loader, name, ispkg in pkgutil.iter_modules(path=[path]):
+    for loader, name, ispkg in pkgutil.iter_modules(path=path):
         if 'driver' in name:
             modules.append(name)
     for module in modules:
