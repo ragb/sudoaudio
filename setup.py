@@ -3,7 +3,6 @@ import sys, os
 from distutils.core import setup
 
 
-
 version = "0.2beta1"
 packages = ["sudoaudio",
 "sudoaudio.speech",
@@ -15,20 +14,20 @@ extra_kwargs = {}
 options = {}
 
 def get_locale_files():
-    return globl.glob("dudoaudio/locale/*/LC_MESSAGES/*")
+    return glob.glob("sudoaudio/locale/*/LC_MESSAGES/*")
 
 def get_puzzle_files():
-    return globl.glob("sudoaudio/puzzles/*/*.sudo")
+    return glob.glob("sudoaudio/puzzles/*/*.sudo")
 
 def get_windows_dlls():
-    return globl.glob("sudoaudio/speech/drivers/win32/*.dll")
+    return glob.glob("sudoaudio/speech/drivers/win32/*.dll")
 
+data_files = get_locale_files() + get_puzzle_files() + get_windows_dlls()
 
 # py2exe support
 if sys.platform == 'win32':
     import py2exe
     extra_kwargs['console'] = ['scripts/sudoaudio']
-    extra_args['data_files'] = get_locale_files() + get_puzzle_files() + get_windows_dlls()
     options.update({'py2exe' : {
     'bundle_files' : 3,
     'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32', 'pygame'],
@@ -54,8 +53,8 @@ setup(
     name='sudoaudio',
     version=version,
     packages= packages,
+    data_files=data_files,
     license='GPL v3',
-    install_requires = ['pygame'],
     long_description=open('README').read(),
     author = "Rui Batista",
     author_email = "ruiandrebatista@gmail.com",

@@ -2,6 +2,3 @@ include AUTHORS
 include COPYING
 include README
 include MANIFEST.in
-recursive-include sudoaudio/puzzles *
-recursive-include sudoaudio/sounds *
-recursive-include sudoaudio/locale*
