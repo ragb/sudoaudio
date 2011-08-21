@@ -79,7 +79,11 @@ def _load_registry():
             continue
         try:
             logger.info("Trying to import module %s", name)
-            m = __import__(name, globals=globals())
+            # For some reason m is the platform package
+            # We can get the module as an attribute
+            # This is kind of a hack
+            m = __import__("%s.%s" % (sys.platform, name), globals=globals())
+            m = getattr(m, name)
         except DriverNotSupportedException:
             logger.info("Module can not be imported")
             continue
