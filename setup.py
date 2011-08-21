@@ -28,6 +28,7 @@ data_files = get_locale_files() + get_puzzle_files() + get_windows_dlls()
 if sys.platform == 'win32':
     import py2exe
     extra_kwargs['console'] = ['scripts/sudoaudio']
+    extra_kwargs['zipfile'] = None
     options.update({'py2exe' : {
     'bundle_files' : 3,
     'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32', 'pygame'],
