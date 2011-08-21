@@ -14,13 +14,23 @@ packages = ["sudoaudio",
 extra_kwargs = {}
 options = {}
 
+def get_locale_files():
+    return globl.glob("dudoaudio/locale/*/LC_MESSAGES/*")
+
+def get_puzzle_files():
+    return globl.glob("sudoaudio/puzzles/*/*.sudo")
+
+def get_windows_dlls():
+    return globl.glob("sudoaudio/speech/drivers/win32/*.dll")
+
+
 # py2exe support
 if sys.platform == 'win32':
     import py2exe
     extra_kwargs['console'] = ['scripts/sudoaudio']
+    extra_args['data_files'] = get_locale_files() + get_puzzle_files() + get_windows_dlls()
     options.update({'py2exe' : {
     'bundle_files' : 3,
-    'zipfile' : None,
     'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32', 'pygame'],
     'excludes' : ['Tkinter'],
     }})
