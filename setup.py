@@ -36,7 +36,7 @@ if sys.platform == 'win32':
     options.update({'py2exe' : {
     'bundle_files' : 3,
     'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32', 'pygame'],
-    'excludes' : ['Tkinter', 'unittest'],
+    'excludes' : ['Tkinter', 'unittest', 'email'],
     'skip_archive' : True,
     }})
 
