@@ -3,12 +3,9 @@ import sys, os
 from setuptools import setup, find_packages, findall
 
 
-sound_files =findall("sudoaudio/sounds")
-puzzle_files = findall("sudoaudio/puzzles/")
-locale_files = findall("sudoaudio/locale")
-data_files = sound_files + puzzle_files + locale_files
 
 version = "0.2beta1"
+
 extra_kwargs = {}
 options = {}
 
@@ -18,10 +15,9 @@ if sys.platform == 'win32':
     extra_kwargs['console'] = ['scripts/sudoaudio']
     options.update({'py2exe' : {
     'bundle_files' : 3,
-    'packages' : ['sudoaudio.speech.drivers.win32'],
+    'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32'],
     'excludes' : ['Tkinter'],
     }})
-    data_files += glob.glob("sudoaudio/speech/drivers/win32/*.dll")
 
 
     origIsSystemDLL = py2exe.build_exe.isSystemDLL
@@ -47,12 +43,9 @@ setup(
     long_description=open('README').read(),
     author = "Rui Batista",
     author_email = "ruiandrebatista@gmail.com",
-    data_files = data_files,
     scripts = ["scripts/sudoaudio"],
     options=options,
     **extra_kwargs
 )
-
-
 
 
