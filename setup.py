@@ -64,6 +64,7 @@ setup(
     long_description=open('README').read(),
     author = "Rui Batista",
     author_email = "ruiandrebatista@gmail.com",
+    url="http://github.com/ragb/sudoaudio",
     scripts = ["scripts/sudoaudio"],
     options=options,
     **extra_kwargs

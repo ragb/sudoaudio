@@ -1,6 +1,6 @@
 Sudoaudio is a simple sudoku playing interface for blind people and others that need audio feedback for solving sudoku puzzles. It is not intended to be an advanced application nor provide interfaces to solve more puzzles or variations of sudoku, either then the standard 9x9 sudoku. Moreover it is meant for playing and forgetting, no complicated interfaces or procedures.
 
-Sudoaudio is in Early development stages. Pre-alpha for now. Expect bugs and kirks. You've been warned. The code is also a mess, and a not commented mess. However do not exitate to contact the AUTHOR with bugs and sugestions.
+Sudoaudio is in Early development stages. Expect bugs and kirks. You've been warned. The code is also a mess, and a not commented mess. However do not exitate to contact the AUTHOR with bugs and sugestions.
 
 == Author and Contacts ==
 
@@ -42,8 +42,6 @@ There are many puzzles in the sudoaudio/puzzles directory. You can also put your
 == Why Sudoaudio ==
 
 The main reason behind sudoaudio development is the lake of a sudoku audio interface for Linux systems, and a free software one, at least from its authors knowledge. OK, the truth is that the author wanted to play sudoku, and then thought this application could be useful to others. Further more there are not that many free software audiogames. Being free software everyone can contribute to the development and use the code and ideas for whatever they want to create, specially more free software audiogames.
-
-On the other hand the code developed in this project can be used on other projects, in the future can become a library on itself for audiogames development.
 
 == Future goals ==
 
