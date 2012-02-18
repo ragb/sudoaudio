@@ -31,10 +31,9 @@ if sys.platform == 'win32':
     import py2exe
     extra_kwargs['console'] = ["scripts/sudoaudio"]
     options.update({'py2exe' : {
-    'bundle_files' : 2,
+    'bundle_files' : 32,
     'packages' : ['sudoaudio', 'pygame', 'accessible_output'],
-    'excludes' : ['Tkinter', 'unittest', 'email'],
-    'skip_archive' : True,
+    'excludes' : ['Tkinter', 'unittest', 'email', 'pygame.image'],
     }})
 
 

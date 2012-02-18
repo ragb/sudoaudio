@@ -222,7 +222,6 @@ _set_logging(None)
 def main():
     args = sys.argv[1:]
     try:
-        utils.adjust_pythonpath()
         speech.init()
         pygame.init()
         pygame.display.set_mode((640, 480))
@@ -230,7 +229,7 @@ def main():
         s = SoundSplash(os.path.join(paths.sounds_path, "intro.ogg"))
         s.run()
         if len(args) < 1:
-            dir = os.path.join(os.path.dirname(__file__), "puzzles", "pack1")
+            dir = os.path.join(paths.puzzles_path, "pack1")
             basename = ChoiceMenu(_("Select puzzle"), list_puzzles(dir)).run()
             if basename is None:
                 sys.exit(-1)
