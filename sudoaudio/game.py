@@ -224,7 +224,6 @@ def main():
     try:
         utils.adjust_pythonpath()
         speech.init()
-        speech.set_voice_for_language()
         pygame.init()
         pygame.display.set_mode((640, 480))
         pygame.display.set_caption("sudoaudio")

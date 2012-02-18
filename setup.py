@@ -5,10 +5,7 @@ from distutils.core import setup
 
 version = "0.2beta1"
 packages = ["sudoaudio",
-"sudoaudio.speech",
-"sudoaudio.speech.drivers",
-"sudoaudio.speech.drivers.linux2",
-"sudoaudio.speech.drivers.win32"]
+"sudoaudio.speech"]
 
 
 def get_locale_files():
@@ -34,8 +31,8 @@ if sys.platform == 'win32':
     import py2exe
     extra_kwargs['console'] = ["scripts/sudoaudio"]
     options.update({'py2exe' : {
-    'bundle_files' : 3,
-    'packages' : ['sudoaudio', 'sudoaudio.speech.drivers.win32', 'pygame'],
+    'bundle_files' : 2,
+    'packages' : ['sudoaudio', 'pygame', 'accessible_output'],
     'excludes' : ['Tkinter', 'unittest', 'email'],
     'skip_archive' : True,
     }})

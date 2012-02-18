@@ -15,58 +15,31 @@
 
 import locale
 import logging
-from drivers import list_drivers
+from accessible_output import speech
 
 logger = logging.getLogger(__name__)
 
 
-_driver = None
+_speaker = None
 
 def init():
-    global _driver
-    if _driver:
-        return None
-    drivers = list_drivers()
-    if not drivers:
-        raise Exception, "No speech drivers can be fuond"
-    _driver = drivers[0]("generic")
-    logger.info("Using driver %s", _driver.name)
+    global _speaker
+    if _speaker:
+        return
+    _speaker = speech.Speaker()
 
-def get_current_driver():
-    return _driver
+
 
 def speak(message, cancel=True):
-    global _driver
-    assert _driver, "Speech module not initialized"
+    global _speaker
+    assert _speaker, "Speech module not initialized"
     if cancel:
-        _driver.cancel()
-    _driver.speak(message)
+        _speaker.silence()
+    _speaker.output(message)
 
 def cancel():
-    assert _driver, "Speech module not initialized"
-    _driver.cancel()
-
-def set_voice_for_language(language=None, variant=None):
-    assert _driver, "Speech module not initialized"
-    if language is None:
-        # read from the current local
-        loc, encoding = locale.getdefaultlocale()
-        language, variant = loc.split("_")
-    voice = _driver.choose_for_language(language, variant)
-    if voice is not None:
-        _driver.set_language(language, variant)
-        _driver.set_voice(voice[0])
-        logger.info ("Found voice %s for locale %s", voice, loc)
-        return voice[0]
-    else:
-        logger.info("Cannot find voice for locale %s, %s", language, variant)
-    return False
+    assert _speaker, "Speech module not initialized"
+    _speaker.silence()
 
 def quit():
-    global _driver
-    if not _driver:
-        return
-    if _driver:
-        _driver.close()
-        logger.info("Quitting speech")
-        _driver = None
+    pass
