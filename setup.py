@@ -9,10 +9,10 @@ packages = ["sudoaudio",
 
 
 def get_locale_files():
-    return glob.glob(os.path.join("sudoaudio", "locale", "*", "LC_MESSAGES", "*"))
+    return glob.glob(os.path.join("locale", "*", "LC_MESSAGES", "*"))
 
 def get_puzzle_files():
-    return glob.glob(os.path.join("sudoaudio", "puzzles", "*", "*.sudo"))
+    return glob.glob(os.path.join("puzzles", "*", "*.sudo"))
 
 def get_windows_dlls():
     return glob.glob(os.path.join("sudoaudio", "speech", "drivers", "win32", "*.dll"))
