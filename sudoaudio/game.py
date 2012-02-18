@@ -71,7 +71,7 @@ class Board(object):
         return ret
 
     def is_solution(self):
-        return self._remaining < 0
+        return self._remaining == 0
 
     def possibilities(self, x, y):
         if self._original[x][y] != 0:
